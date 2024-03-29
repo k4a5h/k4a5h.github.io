@@ -1,0 +1,29 @@
+<!DOCTYPE>
+<html>
+	<head>
+	</head>
+	<p id="my_location">Please wait...</p>
+	<script>
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(locateUser, notLocatable);
+			} else {
+				alert("Can't get your current location");
+			}
+		}
+
+		function locateUser(position) {
+			let lat = position.coords.latitude;
+			let lon = position.coords.longitude;
+			console.log(lat, lon);
+
+			my_location.innerHTML = "Your at lat: " + lat + ", lon: " + lon;
+		}
+
+		function notLocatable(err) {
+			alert("You can not be located: ", err.message);
+		}
+
+		setTimeout(() => getLocation(), 3000);
+	</script>
+</html>
